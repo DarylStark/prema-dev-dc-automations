@@ -7,6 +7,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 USER root
 
 # Intall Pandoc and LaTeX tools
+# hadolint ignore=DL3008
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     pandoc \
@@ -35,7 +36,7 @@ WORKDIR /home/developer/templates
 #     rm -r eisvogel/.github && \
 #     rm -r eisvogel/examples && \
 #     rm -r eisvogel/tests
-RUN wget https://github.com/Wandmalfarbe/pandoc-latex-template/releases/download/v3.3.0/Eisvogel.tar.gz && \
+RUN wget -q -nv https://github.com/Wandmalfarbe/pandoc-latex-template/releases/download/v3.3.0/Eisvogel.tar.gz && \
     tar -xvf Eisvogel.tar.gz && \
     rm Eisvogel.tar.gz && \
     mv Eisvogel-3.3.0 eisvogel && \
