@@ -12,7 +12,9 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     pandoc \
     texlive-xetex \
-    texlive-fonts-extra \
+    texlive-latex-extra \
+    texlive \
+    texlive-plain-generic \
     texlive-fonts-recommended \
     texlive-latex-base \
     lmodern \
@@ -31,11 +33,6 @@ COPY --chown=developer:developer templates /home/developer/templates
 RUN chmod +x /home/developer/automations/*.sh
 
 WORKDIR /home/developer/templates
-# RUN git clone --branch v3.3.0 --depth 1 https://github.com/Wandmalfarbe/pandoc-latex-template.git eisvogel && \
-#     rm -r eisvogel/.git && \
-#     rm -r eisvogel/.github && \
-#     rm -r eisvogel/examples && \
-#     rm -r eisvogel/tests
 RUN wget -q -nv https://github.com/Wandmalfarbe/pandoc-latex-template/releases/download/v3.3.0/Eisvogel.tar.gz && \
     tar -xvf Eisvogel.tar.gz && \
     rm Eisvogel.tar.gz && \

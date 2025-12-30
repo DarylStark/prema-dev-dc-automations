@@ -14,14 +14,17 @@ if [ -f settings.env ]; then
 fi
 
 cd src
+IFS=$'\n' read -rd '' -a FILES < <(find . -name "*md" | sort && printf '\0')
+printf '%s\n' "${FILES[@]}"
+
 pandoc \
-    $TEMPLATES_FOLDER/metadata.md \
-    *.md \
-    -o $OUTPUT_FILE \
+    "$TEMPLATES_FOLDER/metadata.md" \
+    "${FILES[@]}" \
+    -o "$OUTPUT_FILE" \
     --pdf-engine=xelatex \
     --toc \
-    --template=$TEMPLATES_FOLDER/eisvogel/eisvogel.latex \
-    --lua-filter=$TEMPLATES_FOLDER/chapter-pagebreak.lua \
+    --template="$TEMPLATES_FOLDER/eisvogel/eisvogel.latex" \
+    --lua-filter="$TEMPLATES_FOLDER/chapter-pagebreak.lua" \
     --metadata title="$TITLE" \
     --metadata subtitle="$SUBTITLE" \
     --metadata date="$DATE" \
