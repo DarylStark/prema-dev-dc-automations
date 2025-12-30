@@ -17,17 +17,15 @@ cd src
 IFS=$'\n' read -rd '' -a FILES < <(find . -name "*md" -print0 | xargs -0 -n1 basename | sort | while read f; do find . -name "$f"; done && printf '\0')
 printf '%s\n' "${FILES[@]}"
 
+echo $FILES
+
 pandoc \
-    "$TEMPLATES_FOLDER/metadata.md" \
     "${FILES[@]}" \
+    -t epub3 \
     -o "$OUTPUT_FILE" \
-    --pdf-engine=xelatex \
     --toc \
-    --template="$TEMPLATES_FOLDER/eisvogel/eisvogel.latex" \
-    --lua-filter="$TEMPLATES_FOLDER/chapter-pagebreak.lua" \
     --metadata title="$TITLE" \
     --metadata subtitle="$SUBTITLE" \
     --metadata date="$DATE" \
     --metadata author="$AUTHOR" \
-    --metadata institute="$INSTITUTE" \
-    --metadata=titlepage-background:"$TEMPLATES_FOLDER/front-page.png"
+    --metadata institute="$INSTITUTE"
