@@ -11,6 +11,7 @@ header-includes:
   - \usepackage{array}
   - \usepackage{caption}
   - \usepackage{enumitem}
+  - \usepackage[normalem]{ulem}
   - \captionsetup[figure]{justification=centering}
   - \exhyphenpenalty=10000
   - \hyphenpenalty=10000
