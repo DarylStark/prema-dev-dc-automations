@@ -11,14 +11,7 @@ USER root
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     pandoc \
-    texlive-xetex \
-    texlive-latex-extra \
-    texlive \
-    texlive-plain-generic \
-    texlive-fonts-recommended \
-    texlive-latex-base \
-    lmodern \
-    texlive-base && \
+    texlive-full && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists
 
