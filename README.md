@@ -231,7 +231,7 @@ my-document/
 ```bash
 export TITLE="My Document"
 export SUBTITLE="A Comprehensive Guide"
-export DATE="2026"
+export DATE="$(date +%Y)"
 export AUTHOR="Your Name"
 export INSTITUTE="Your Organization"
 ```
