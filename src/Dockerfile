@@ -14,18 +14,19 @@ RUN apt-get update && \
     texlive-full \
     wget \
     tar \
+    xz-utils \
     ca-certificates && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 # Install Typst
 # hadolint ignore=DL3003
-RUN TYPST_VERSION="0.12.0" && \
+RUN TYPST_VERSION="0.14.2" && \
     wget -q "https://github.com/typst/typst/releases/download/v${TYPST_VERSION}/typst-x86_64-unknown-linux-musl.tar.xz" -O typst.tar.xz && \
-    tar -xf typst.tar.xz && \
-    mv typst-x86_64-unknown-linux-musl/typst /usr/local/bin/typst && \
-    rm -rf typst-x86_64-unknown-linux-musl typst.tar.xz && \
-    chmod +x /usr/local/bin/typst
+   tar -xf typst.tar.xz && \
+   mv typst-x86_64-unknown-linux-musl/typst /usr/local/bin/typst && \
+   rm -rf typst-x86_64-unknown-linux-musl typst.tar.xz && \
+   chmod +x /usr/local/bin/typst
 
 # Switch back to developer user
 USER developer
