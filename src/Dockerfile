@@ -11,9 +11,22 @@ USER root
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     pandoc \
-    texlive-full && \
+    texlive-full \
+    curl \
+    wget \
+    tar \
+    ca-certificates && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists
+
+# Install Typst
+# hadolint ignore=DL3003,DL4006
+RUN TYPST_VERSION="0.12.0" && \
+    curl -fsSL "https://github.com/typst/typst/releases/download/v${TYPST_VERSION}/typst-x86_64-unknown-linux-musl.tar.xz" -o typst.tar.xz && \
+    tar -xf typst.tar.xz && \
+    mv typst-x86_64-unknown-linux-musl/typst /usr/local/bin/typst && \
+    rm -rf typst-x86_64-unknown-linux-musl typst.tar.xz && \
+    chmod +x /usr/local/bin/typst
 
 # Switch back to developer user
 USER developer
