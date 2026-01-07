@@ -1,0 +1,6 @@
+[package]
+name = "daryl-stark-templates"
+version = "1.0.1"
+entrypoint = "main.typ"
+authors = ["Daryl Stark"]
+description = "Academisch verslag templates met UML ondersteuning."
