@@ -40,6 +40,9 @@ RUN chmod +x /home/developer/automations/*.sh && \
 
 # Copy Typst templates and the required fonts
 COPY --chown=developer:developer typst-templates/ /home/developer/.local/share/typst/packages/local/
+
+# Copy ePub templates
+COPY --chown=developer:developer templates/ /home/developer/templates/
 COPY --chown=developer:developer fonts/SourceSans3-*.ttf /home/developer/.local/share/fonts/source-sans/
 
 # Copy local bashrc additions

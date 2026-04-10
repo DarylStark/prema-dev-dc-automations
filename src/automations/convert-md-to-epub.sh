@@ -23,6 +23,7 @@ pandoc \
     "${FILES[@]}" \
     -t epub3 \
     -o "$OUTPUT_FILE" \
+    --css "$TEMPLATES_FOLDER/epub.css" \
     --toc \
     --metadata title="$TITLE" \
     --metadata subtitle="$SUBTITLE" \
